@@ -1,0 +1,5 @@
+Question:
+http://community.topcoder.com/stat?c=problem_statement&pm=13506
+
+Idea:
+The idea is to define a distance array that defines the minimum distance from (x, y) to the right-most column.  Since dist[0][0]/dist[1][0] indicates the min distance from left-most column starting at either row 0 or row 1 to the rightmost column, either arriving at row 0 or row 1, without going through the black cells, they will be a color white path.  We just subtract this white path (min number of white cells) from the total number of white cells to get the max number of cells that can be colored black.

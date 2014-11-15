@@ -3,11 +3,14 @@ class PathGameDiv2:
         col = len(board[0])
         # dist[x][y] defines the min distance from (x, y) to the right-most column,
         # either @ row 0 or row 1; it doesn't matter which
+        # We first initialize all distance to the rightmost column to infinity
         dist = [[float('inf') for x in xrange(col)] for x in xrange(2)]
 
         w = 0
 
-        # initialize the distance array
+        # We then initialize the distance from the rightmost column
+        # Note the we initialize a white cell to 1, not 0.  This is because
+        # this will represent the min number of white cells
         for x in xrange(2):
             if board[x][col-1] != '#':
                 dist[x][col-1] = 1
@@ -25,7 +28,7 @@ class PathGameDiv2:
                         r_xy = min(r_xy, 2 + dist[not x][y+1])
                     dist[x][y] = r_xy
 
-        # since dist[0][0]/dist[1][0] indicates the min distance from left-most
+        # Since dist[0][0]/dist[1][0] indicates the min distance from left-most
         # column starting at either row 0 or row 1 to the rightmost column, either
         # arriving at row 0 or row 1, without going through the black cells, they
         # will be a color white path.  We just subtract this white path (min # of
